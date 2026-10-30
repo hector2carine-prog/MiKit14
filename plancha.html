@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mini Plancha a Vapor Portátil — MiKit14</title>
+<meta name="description" content="Mini plancha a vapor portátil: ropa lisa en segundos, sin tabla de planchar. Envío gratis a todo Chile y pagas al recibir.">
+<meta property="og:title" content="Mini Plancha a Vapor Portátil — Envío gratis y pagas al recibir">
+<meta property="og:description" content="Ropa lisa en segundos, sin tabla de planchar. $24.990 o 2 por $39.990.">
+<meta property="og:image" content="https://d39ru7awumhhs2.cloudfront.net/chile/products/50672/3217220e-8064-429c-994b-790c3692576a.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1B1D1C; --ink-2:#26302E; --paper:#EDEAE1; --paper-2:#E2DED2;
+    --orange:#FF5A1F; --orange-dark:#C8420F; --yellow:#FFC933; --green:#1F7A4D;
+    --steel:#4A5568; --steel-light:#8A93A3; --white:#FAF9F5;
+    --font-display:'Oswald', sans-serif; --font-body:'Inter', sans-serif; --font-mono:'JetBrains Mono', monospace;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{font-family:var(--font-body); background:var(--paper); color:var(--ink); line-height:1.55; padding-bottom:84px;}
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%; display:block;}
+  .wrap{max-width:1040px; margin:0 auto; padding:0 16px;}
+
+  .topbar{background:var(--orange); color:var(--ink); font-family:var(--font-mono); font-weight:700; font-size:12.5px; letter-spacing:.04em; text-align:center; padding:9px 12px;}
+
+  header.nav{background:var(--ink); color:var(--paper);}
+  header.nav .wrap{display:flex; justify-content:space-between; align-items:center; height:52px;}
+  .brandmark{font-family:var(--font-display); font-weight:700; letter-spacing:.04em; font-size:20px;}
+  .brandmark span{color:var(--orange);}
+  .nav-wa{font-size:13px; font-weight:600; color:var(--yellow);}
+
+  /* HERO */
+  .hero{background:var(--ink); color:var(--paper); padding:22px 0 34px;}
+  .hero-grid{display:grid; grid-template-columns:1fr; gap:22px;}
+  @media (min-width:860px){ .hero-grid{grid-template-columns:1.05fr 1fr; gap:44px; align-items:center;} .hero{padding:44px 0 56px;} }
+  .gallery{background:var(--white); border-radius:6px; overflow:hidden; position:relative;}
+  .gallery img.main{width:100%; aspect-ratio:1/1; object-fit:contain; background:var(--white);}
+  .thumbs{display:flex; gap:8px; padding:8px; background:var(--white);}
+  .thumbs button{border:2px solid transparent; border-radius:4px; padding:0; background:none; cursor:pointer; width:64px; height:64px; overflow:hidden;}
+  .thumbs button[aria-current="true"]{border-color:var(--orange);}
+  .thumbs img{width:100%; height:100%; object-fit:cover;}
+  .badge-free{position:absolute; top:12px; left:12px; background:var(--orange); color:var(--ink); font-family:var(--font-mono); font-weight:700; font-size:12px; padding:6px 10px; border-radius:3px;}
+
+  .eyebrow{font-family:var(--font-mono); font-size:12px; color:var(--orange); letter-spacing:.12em; text-transform:uppercase; margin-bottom:10px;}
+  h1{font-family:var(--font-display); font-weight:700; text-transform:uppercase; line-height:1; font-size:clamp(34px, 7vw, 54px); color:var(--white);}
+  h1 .accent{color:var(--orange);}
+  .sub{color:#C9CDD3; font-size:17px; margin:14px 0 18px;}
+  .stars{color:var(--yellow); font-size:14px; margin-bottom:16px;}
+  .stars span{color:#C9CDD3; margin-left:6px;}
+  .bullets{list-style:none; display:grid; gap:8px; margin-bottom:22px;}
+  .bullets li{display:flex; gap:10px; font-size:15.5px;}
+  .bullets li::before{content:"✓"; color:var(--orange); font-weight:700;}
+
+  /* OFFERS */
+  .offers{display:grid; gap:10px; margin-bottom:16px;}
+  .offer{display:flex; align-items:center; gap:12px; background:var(--ink-2); border:2px solid #3A4441; border-radius:6px; padding:14px; cursor:pointer; position:relative;}
+  .offer input{accent-color:var(--orange); width:20px; height:20px;}
+  .offer:has(input:checked){border-color:var(--orange); background:#2E2A25;}
+  .offer .o-title{font-weight:700; font-size:16px;}
+  .offer .o-note{font-size:13px; color:#C9CDD3;}
+  .offer .o-price{margin-left:auto; font-family:var(--font-display); font-weight:600; font-size:24px; color:var(--white);}
+  .offer .o-tag{position:absolute; top:-10px; right:12px; background:var(--yellow); color:var(--ink); font-family:var(--font-mono); font-weight:700; font-size:11px; padding:3px 8px; border-radius:3px;}
+
+  .btn{display:flex; justify-content:center; align-items:center; gap:10px; width:100%; font-weight:700; font-size:17px; padding:16px 20px; border-radius:4px; border:0; cursor:pointer; background:var(--orange); color:var(--ink); transition:transform .15s ease, background .15s ease;}
+  .btn:hover{background:#ff6f3d; transform:translateY(-1px);}
+  .assure{display:flex; justify-content:center; gap:16px; flex-wrap:wrap; margin-top:12px; font-size:13px; color:#C9CDD3;}
+
+  /* SECTIONS */
+  section{padding:44px 0;}
+  h2{font-family:var(--font-display); font-weight:700; text-transform:uppercase; font-size:clamp(26px, 5vw, 36px); line-height:1.05; margin-bottom:20px;}
+  .uses{display:grid; grid-template-columns:repeat(auto-fit, minmax(210px, 1fr)); gap:12px;}
+  .use{background:var(--white); border-radius:6px; padding:18px; border-left:4px solid var(--orange);}
+  .use b{display:block; font-family:var(--font-display); font-size:19px; text-transform:uppercase; margin-bottom:4px;}
+  .use p{color:var(--steel); font-size:15px;}
+
+  .steps{display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:12px; counter-reset:s;}
+  .step{background:var(--ink); color:var(--paper); border-radius:6px; padding:20px;}
+  .step::before{counter-increment:s; content:"0" counter(s); font-family:var(--font-mono); color:var(--orange); font-weight:700; display:block; margin-bottom:6px;}
+  .step b{display:block; font-size:17px; margin-bottom:4px; color:var(--white);}
+  .step p{font-size:14.5px; color:#C9CDD3;}
+
+  /* FORM */
+  .order{background:var(--ink); color:var(--paper);}
+  .form-card{background:var(--ink-2); border-radius:8px; padding:20px; max-width:620px; margin:0 auto;}
+  .form-card h2{color:var(--white); text-align:center;}
+  .form-sub{text-align:center; color:#C9CDD3; margin:-8px 0 18px; font-size:15px;}
+  label{display:block; font-size:13.5px; font-weight:600; margin:12px 0 6px; color:var(--white);}
+  input[type=text], input[type=tel], select, textarea{width:100%; font:inherit; font-size:16px; padding:13px 12px; border-radius:4px; border:1.5px solid #3A4441; background:var(--white); color:var(--ink);}
+  input:focus, select:focus, textarea:focus{outline:3px solid rgba(255,90,31,.45); border-color:var(--orange);}
+  .row{display:grid; grid-template-columns:1fr; gap:0 12px;}
+  @media (min-width:560px){ .row{grid-template-columns:1fr 1fr;} }
+  .summary{display:flex; justify-content:space-between; align-items:center; margin:18px 0 14px; padding:14px; background:#2E2A25; border-radius:6px; font-weight:600;}
+  .summary .total{font-family:var(--font-display); font-size:26px; color:var(--orange);}
+  .error{color:#FF9B7A; font-size:13.5px; margin-top:10px; min-height:1em;}
+  .legal{font-size:12.5px; color:var(--steel-light); margin-top:12px; text-align:center;}
+
+  /* FAQ */
+  details{background:var(--white); border-radius:6px; padding:16px 18px; margin-bottom:10px;}
+  summary{font-weight:700; cursor:pointer; list-style:none; display:flex; justify-content:space-between; gap:12px;}
+  summary::after{content:"+"; color:var(--orange); font-weight:700;}
+  details[open] summary::after{content:"–";}
+  details p{margin-top:8px; color:var(--steel);}
+
+  footer{background:var(--ink); color:var(--steel-light); font-size:13px; padding:24px 0; text-align:center;}
+  footer a{color:var(--paper); text-decoration:underline;}
+
+  /* STICKY CTA (mobile) */
+  .sticky{position:fixed; left:0; right:0; bottom:0; background:var(--ink); padding:10px 16px calc(10px + env(safe-area-inset-bottom)); display:flex; align-items:center; gap:12px; box-shadow:0 -8px 24px rgba(0,0,0,.25); z-index:20;}
+  .sticky .s-price{color:var(--white); font-family:var(--font-display); font-size:22px; line-height:1;}
+  .sticky .s-price small{display:block; font-family:var(--font-body); font-size:11.5px; color:var(--yellow); margin-top:3px;}
+  .sticky .btn{width:auto; flex:1; padding:14px;}
+  @media (min-width:860px){ .sticky{display:none;} body{padding-bottom:0;} }
+</style>
+</head>
+<body>
+
+<div class="topbar">🚚 ENVÍO GRATIS A TODO CHILE · 🏡 PAGAS AL RECIBIR</div>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brandmark" href="https://mikit14.cl">MI<span>KIT</span>14</a>
+    <a class="nav-wa" id="wa-nav" href="#" target="_blank" rel="noopener">¿Dudas? WhatsApp →</a>
+  </div>
+</header>
+
+<section class="hero" style="padding-top:22px;">
+  <div class="wrap hero-grid">
+    <div class="gallery">
+      <span class="badge-free">ENVÍO GRATIS</span>
+      <img class="main" id="main-img" src="https://d39ru7awumhhs2.cloudfront.net/chile/products/50672/3217220e-8064-429c-994b-790c3692576a.png" alt="Mini plancha a vapor portátil color verde">
+      <div class="thumbs">
+        <button type="button" aria-current="true" data-src="https://d39ru7awumhhs2.cloudfront.net/chile/products/50672/3217220e-8064-429c-994b-790c3692576a.png"><img src="https://d39ru7awumhhs2.cloudfront.net/chile/products/50672/3217220e-8064-429c-994b-790c3692576a.png" alt="Vista principal"></button>
+        <button type="button" data-src="https://d39ru7awumhhs2.cloudfront.net/chile/products/50672/90bf8ed1-ec45-4a15-9b38-bfd60ad4a70b.png"><img src="https://d39ru7awumhhs2.cloudfront.net/chile/products/50672/90bf8ed1-ec45-4a15-9b38-bfd60ad4a70b.png" alt="Otra vista"></button>
+      </div>
+    </div>
+
+    <div>
+      <div class="eyebrow">MK14-HOG-PLV · Hogar y viaje</div>
+      <h1>Mini plancha <span class="accent">a vapor</span> portátil</h1>
+      <p class="sub">Ropa lisa en segundos, sin sacar la tabla de planchar.</p>
+      <ul class="bullets">
+        <li>Para camisas, poleras, blusas y vestidos</li>
+        <li>Úsala colgada, en la percha o sobre una silla</li>
+        <li>Chica y liviana: va en la maleta o la mochila</li>
+        <li>La enchufas, esperas que salga vapor y listo</li>
+      </ul>
+
+      <div class="offers" role="radiogroup" aria-label="Elige tu oferta">
+        <label class="offer">
+          <input type="radio" name="qty" value="1" checked>
+          <div><div class="o-title">1 plancha</div><div class="o-note">Envío gratis</div></div>
+          <div class="o-price">$24.990</div>
+        </label>
+        <label class="offer">
+          <span class="o-tag">AHORRAS $9.990</span>
+          <input type="radio" name="qty" value="2">
+          <div><div class="o-title">2 planchas</div><div class="o-note">Una para ti y otra para regalar 🎁</div></div>
+          <div class="o-price">$39.990</div>
+        </label>
+      </div>
+
+      <a class="btn" href="#pedido">Pedir ahora · pagas al recibir →</a>
+      <div class="assure"><span>🔒 No pagas nada por adelantado</span><span>📦 Despacho a todo Chile</span></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>¿Para qué la vas a usar?</h2>
+    <div class="uses">
+      <div class="use"><b>Antes de salir</b><p>La camisa arrugada y vas atrasado: una pasada y quedas presentable.</p></div>
+      <div class="use"><b>En viajes</b><p>Cabe en la maleta. Llegas al hotel y alisas la ropa sin pedir plancha.</p></div>
+      <div class="use"><b>En la oficina</b><p>Retoques rápidos antes de una reunión o una entrevista.</p></div>
+      <div class="use"><b>Departamentos chicos</b><p>Sin tabla de planchar ni plancha grande ocupando espacio.</p></div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0;">
+  <div class="wrap">
+    <h2>Así de simple es comprar</h2>
+    <div class="steps">
+      <div class="step"><b>Haces tu pedido</b><p>Completa el formulario de abajo. No pagas nada todavía.</p></div>
+      <div class="step"><b>Te confirmamos por WhatsApp</b><p>Revisamos tu dirección y te avisamos cuándo llega.</p></div>
+      <div class="step"><b>La recibes y pagas</b><p>Pagas al momento de la entrega, en la puerta de tu casa.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="order" id="pedido">
+  <div class="wrap">
+    <form class="form-card" id="order-form" novalidate>
+      <h2>Haz tu pedido</h2>
+      <p class="form-sub">Pagas cuando te llegue. Te confirmamos por WhatsApp.</p>
+
+      <label for="f-qty">Oferta</label>
+      <select id="f-qty" name="qty">
+        <option value="1">1 plancha — $24.990</option>
+        <option value="2">2 planchas — $39.990 (ahorras $9.990)</option>
+      </select>
+
+      <label for="f-name">Nombre y apellido</label>
+      <input id="f-name" name="name" type="text" autocomplete="name" required>
+
+      <label for="f-phone">Teléfono (WhatsApp)</label>
+      <input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="9 1234 5678" required>
+
+      <div class="row">
+        <div>
+          <label for="f-region">Región</label>
+          <select id="f-region" name="region" required>
+            <option value="">Selecciona…</option>
+          </select>
+        </div>
+        <div>
+          <label for="f-comuna">Comuna</label>
+          <input id="f-comuna" name="comuna" type="text" autocomplete="address-level2" required>
+        </div>
+      </div>
+
+      <label for="f-address">Dirección (calle, número, depto/casa)</label>
+      <input id="f-address" name="address" type="text" autocomplete="street-address" required>
+
+      <label for="f-notes">Referencia para el repartidor (opcional)</label>
+      <input id="f-notes" name="notes" type="text" placeholder="Ej: casa reja verde, timbre no funciona">
+
+      <div class="summary"><span>Total a pagar al recibir</span><span class="total" id="total">$24.990</span></div>
+
+      <button class="btn" type="submit">Confirmar pedido por WhatsApp →</button>
+      <div class="error" id="form-error" role="alert"></div>
+      <p class="legal">Al enviar, se abre WhatsApp con tu pedido listo. Tus datos solo se usan para despacharte.</p>
+    </form>
+  </div>
+</section>
+
+<section>
+  <div class="wrap" style="max-width:760px;">
+    <h2>Preguntas frecuentes</h2>
+    <details><summary>¿Cuándo me llega?</summary><p>Despachamos desde Santiago. En la Región Metropolitana suele llegar en 1 a 3 días hábiles y en regiones en 2 a 6 días hábiles, según tu comuna. Te avisamos por WhatsApp.</p></details>
+    <details><summary>¿Cómo pago?</summary><p>Pagas al recibir el producto, al repartidor. No tienes que pagar nada por adelantado.</p></details>
+    <details><summary>¿El envío tiene costo?</summary><p>No, el envío es gratis a todo Chile.</p></details>
+    <details><summary>¿Sirve para cualquier tela?</summary><p>Funciona muy bien en algodón, poleras, camisas, blusas y vestidos. Para telas delicadas, prueba primero en una parte que no se vea y mantén la plancha a unos centímetros.</p></details>
+    <details><summary>¿Tiene garantía?</summary><p>Sí. Tienes la garantía legal de 6 meses por fallas de fábrica. Escríbenos por WhatsApp y lo resolvemos.</p></details>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    MiKit14 · Santiago, Chile · <a href="mailto:contacto.mikit14@gmail.com">contacto.mikit14@gmail.com</a> · <a id="wa-footer" href="#" target="_blank" rel="noopener">WhatsApp</a>
+  </div>
+</footer>
+
+<div class="sticky">
+  <div class="s-price" id="sticky-price">$24.990<small>Envío gratis · pagas al recibir</small></div>
+  <a class="btn" href="#pedido">Pedir ahora →</a>
+</div>
+
+<script>
+  // ======= CONFIGURACIÓN =======
+  const WHATSAPP_NUMBER = "56971031498";
+  const PRODUCT = "Mini Plancha a Vapor Portátil (MK14-HOG-PLV)";
+  const OFFERS = { "1": { label: "1 plancha", price: 24990 }, "2": { label: "2 planchas", price: 39990 } };
+  const REGIONS = ["Arica y Parinacota","Tarapacá","Antofagasta","Atacama","Coquimbo","Valparaíso","Metropolitana","O'Higgins","Maule","Ñuble","Biobío","La Araucanía","Los Ríos","Los Lagos","Aysén","Magallanes"];
+
+  const clp = n => "$" + n.toLocaleString("es-CL");
+  const wa = text => `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
+
+  // Contact links
+  const askMsg = "Hola, tengo una consulta sobre la mini plancha a vapor";
+  ["wa-nav","wa-footer"].forEach(id => document.getElementById(id).href = wa(askMsg));
+
+  // Gallery
+  const mainImg = document.getElementById("main-img");
+  document.querySelectorAll(".thumbs button").forEach(b => b.addEventListener("click", () => {
+    mainImg.src = b.dataset.src;
+    document.querySelectorAll(".thumbs button").forEach(x => x.setAttribute("aria-current", x === b ? "true" : "false"));
+  }));
+
+  // Regions
+  const regionSel = document.getElementById("f-region");
+  REGIONS.forEach(r => regionSel.add(new Option(r, r)));
+
+  // Keep hero offer, form select, total and sticky price in sync
+  const qtySel = document.getElementById("f-qty");
+  function setQty(q){
+    qtySel.value = q;
+    document.querySelectorAll('input[name="qty"]').forEach(r => r.checked = r.value === q);
+    document.getElementById("total").textContent = clp(OFFERS[q].price);
+    document.getElementById("sticky-price").firstChild.textContent = clp(OFFERS[q].price);
+  }
+  document.querySelectorAll('input[name="qty"]').forEach(r => r.addEventListener("change", () => setQty(r.value)));
+  qtySel.addEventListener("change", () => setQty(qtySel.value));
+
+  // Submit → WhatsApp with the order
+  document.getElementById("order-form").addEventListener("submit", e => {
+    e.preventDefault();
+    const f = e.target, err = document.getElementById("form-error");
+    const v = n => f.elements[n].value.trim();
+    const phone = v("phone").replace(/[^\d+]/g, "");
+    const missing = ["name","phone","region","comuna","address"].filter(n => !v(n));
+    if (missing.length){ err.textContent = "Completa todos los campos para poder despacharte."; f.elements[missing[0]].focus(); return; }
+    if (phone.replace(/\D/g, "").length < 8){ err.textContent = "Revisa el teléfono: debe tener al menos 8 dígitos."; f.elements.phone.focus(); return; }
+    err.textContent = "";
+    const o = OFFERS[v("qty")];
+    const msg =
+`Hola, quiero hacer este pedido 🛒
+• Producto: ${PRODUCT}
+• Oferta: ${o.label} — ${clp(o.price)} (envío gratis, pago al recibir)
+• Nombre: ${v("name")}
+• Teléfono: ${v("phone")}
+• Dirección: ${v("address")}, ${v("comuna")}, Región ${v("region")}${v("notes") ? `\n• Referencia: ${v("notes")}` : ""}`;
+    window.open(wa(msg), "_blank", "noopener");
+  });
+</script>
+</body>
+</html>
